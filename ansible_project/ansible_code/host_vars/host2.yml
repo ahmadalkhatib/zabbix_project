@@ -1,0 +1,15 @@
+
+  ports: 
+   - 80/tcp
+   - 443/tcp
+   - 3306/tcp 
+  packages:
+   - httpd
+   - mariadb-server
+   - php
+   - php-mysqlnd
+   - git
+  packages_name:
+   - httpd
+   - mariadb
+   - firewalld

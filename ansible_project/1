@@ -1,0 +1,19 @@
+-
+ name: ssytem module
+ hosts: all
+ vars:
+  packages:
+    - httpd
+    - chronyd
+    - firewalld
+    
+ tasks:
+  -
+   name: check httpd service 
+   service:
+    name: '{{packages}}'
+    state: started
+    register: output
+  - 
+   debug:
+    var: output.stdout_lines 

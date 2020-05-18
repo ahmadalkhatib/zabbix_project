@@ -1,0 +1,15 @@
+  - 
+   name: delete localrepo files
+   shell: ' rm -rf /etc/yum.repos.d/* '
+    
+  - 
+   copy:
+     src: /home/ahmad/pac/
+     dest: /etc/yum.repos.d/
+     
+     force: yes
+  -
+     shell: "yum clean all"
+  -  
+     shell: "yum repolist all" 
+   

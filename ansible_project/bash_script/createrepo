@@ -1,0 +1,5 @@
+
+#!/bin/bash
+createrepo /localrepo/
+yum clean all
+yum repolist all

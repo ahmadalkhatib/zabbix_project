@@ -1,0 +1,11 @@
+-
+ name: check files
+ hosts: host1
+ tasks: 
+  -
+   name: print DNS
+   lineinfile:
+    path: /var/www/html/index.php
+    regexp: '^"$link"'
+    line: 'localhost'
+    state: absent  

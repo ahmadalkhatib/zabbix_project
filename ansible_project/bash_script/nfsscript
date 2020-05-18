@@ -1,0 +1,18 @@
+
+
+
+#!/bin/bash
+systemctl enable rpcbind
+systemctl enable nfs-server
+systemctl start rpcbind nfs-server rpc-statd nfs-idmapd
+echo "/localrepo *(rw,sync,no_root_squash)" > /etc/exports
+exportfs -rv
+systemctl stop firewalld
+systemctl disable firewalld
+mkdir /home/ahmad/pac
+cp -r /etc/yum.repos.d/* /home/ahmad/pac
+rm -rf /etc/yum.repos.d/*
+cp /home/ahmad/local.repo /etc/yum.repos.d/
+createrepo /localrepo/
+yum clean all
+yum repolist all

@@ -1,0 +1,36 @@
+
+
+  
+
+- 
+   name: nfs tasks
+   script: /home/ahmad/bash_script/nfsscript
+
+-
+   name: install httpd and mariadb 
+   yum: 
+    name: '{{item}}'
+    state: installed
+   loop: '{{web_pack_install}}'
+- 
+   name: rpm installed 
+   script: /home/ahmad/bash_script/rpm_pack
+   ignore_errors: yes
+- 
+   name: php pack
+   yum: 
+    name: '{{item}}'
+    state: installed
+   loop: '{{php_pack}}'
+-  
+   name: Make sure pymysql is present
+   pip:
+     name: pymysql
+     state: present
+   
+- 
+   service: 
+    name: '{{item}}'
+    state: started
+    enabled: yes
+   loop: '{{web_pack}}'

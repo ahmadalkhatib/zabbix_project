@@ -1,0 +1,5 @@
+[centos7] 
+name=centos7
+baseurl=file:///localrepo/ 
+enabled=1 
+gpgcheck=0 

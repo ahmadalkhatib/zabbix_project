@@ -1,0 +1,18 @@
+  
+  - 
+   name: nfs 
+   script: /home/ahmad/bash_script/nfs_client
+  
+  - 
+   name: local repo 
+   copy: 
+    src: /home/ahmad/local.repo
+    dest: /etc/yum.repos.d/
+    force: yes
+
+  -
+   name: clean all
+   script: /home/ahmad/bash_script/createrepo
+  -
+
+  

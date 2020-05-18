@@ -1,0 +1,43 @@
+
+  
+- 
+ 
+   name: install httpd and mariadb 
+   yum:  
+    name: zabbix-agent
+    state: installed
+  
+  
+-
+   lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    state: present   
+    regexp: '^Server='                            
+    line: 'Server=192.168.119.137 '
+-
+   lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    state: present   
+    regexp: '^ServerActive='                            
+    line: 'ServerActive=192.168.119.137 '    
+-
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    state: present   
+    regexp: '^Hostname'                            
+    line: 'Hostname=host1 '
+  when: 'ansible_host == "192.168.119.132" '
+-
+  lineinfile:
+    path: /etc/zabbix/zabbix_agentd.conf
+    state: present   
+    regexp: '^Hostname'                            
+    line: 'Hostname=host2 '
+  when: 'ansible_host == "192.168.119.133" '
+-
+  service: 
+    name: 'zabbix-agent'
+    state: restarted
+    enabled: yes
+   
+   

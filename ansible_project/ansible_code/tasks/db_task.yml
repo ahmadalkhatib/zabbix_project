@@ -1,0 +1,17 @@
+ - 
+   mysql_db:
+     name: fosslinuxzabbix
+     state: present
+
+ - 
+   mysql_user:
+    name: zabbixuser
+	  host: localhost
+    password: "@dfEr234KliT90"
+    priv: '*.*:ALL,GRANT'
+    state: present
+ - 
+   mysql_db:
+    state: import
+    name: all
+    target: /usr/share/doc/zabbix-server-mysql-4.0.2/create.sql.gz 

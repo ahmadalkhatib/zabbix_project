@@ -1,0 +1,28 @@
+   pack1:
+     - httpd
+     - mariadb
+     - zabbix-server
+   pack_zabbix:
+    - zabbix-server-mysql 
+    - zabbix-web-mysql 
+    - zabbix-agent
+    - zabbix-get
+
+   web_pack:
+    - httpd
+    - mariadb
+   web_pack_install:
+    - httpd
+    - mariadb-server
+   php_pack:
+    - php 
+    - php-pear 
+    - php-cgi 
+    - php-common 
+    - php-mbstring 
+    - php-snmp 
+    - php-gd 
+    - php-xml 
+    - php-mysql 
+    - php-gettext 
+    - php-bcmath

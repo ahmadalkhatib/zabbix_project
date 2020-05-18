@@ -1,0 +1,10 @@
+- 
+   name: enable and start services 
+   
+    
+   service: 
+    name: '{{item}}'
+    state: restarted
+    enabled: yes
+   loop: '{{pack1}}'
+   ignore_errors: yes

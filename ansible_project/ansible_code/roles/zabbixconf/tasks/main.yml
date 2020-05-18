@@ -1,0 +1,64 @@
+ 
+ 
+ 
+ 
+   
+   
+  - 
+    name: install httpd and mariadb 
+    yum:  
+     name: '{{item}}'
+     state: installed
+    loop: '{{pack_zabbix}}'
+
+  - 
+   name: "Replace line in file examples"
+   
+   lineinfile:
+    path: /etc/zabbix/zabbix_server.conf
+    state: present
+    regexp: '^DBName'
+    line: 'DBName=fosslinuxzabbix '
+  - 
+   name: "Replace line in file examples"
+   
+   lineinfile:
+    path: /etc/zabbix/zabbix_server.conf
+    state: present
+    regexp: '^DBUser'
+    line: 'DBUser=zabbixuser'
+  - 
+   name: "Replace line in file examples"
+   
+   lineinfile:
+    path: /etc/php.ini
+    state: present   
+    regexp: '^;date.timezone'                            
+    line: 'date.timezone = Asia/Jerusalem '
+
+ 
+  
+  - 
+   name: "Replace line in file examples"
+   
+   lineinfile:
+    path: /etc/zabbix/zabbix_server.conf
+    state: present                               
+    line: 'DBPassword=dfEr234KliT90 '
+
+  
+   
+  - 
+   shell: 'gunzip /usr/share/doc/zabbix-server-mysql-4.0.20/create.sql.gz'
+
+  -
+   name: import dump 
+   
+   shell: ' mysql fosslinuxzabbix <  /usr/share/doc/zabbix-server-mysql-4.0.20/create.sql '
+   
+    
+    #login_user: zabbixuser
+    #login_password: "@dfEr234KliT90"
+   ignore_errors: yes
+
+  

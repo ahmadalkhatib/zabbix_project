@@ -1,0 +1,29 @@
+-
+ name: lamp server 
+ hosts: host1
+ roles:
+     - install_service
+     - fire_config
+     - db_task
+     - restart_enable
+                           #shell: sed -i 's/"('172.*.'"/"('localhost'"/g'  /var/www/html/index.php
+  
+ 
+   
+    
+  
+  
+  
+ 
+   
+  
+  
+  
+  
+    
+  
+
+
+      
+   
+    

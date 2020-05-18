@@ -1,0 +1,68 @@
+- 
+   name: client 
+   hosts: ansible_clients
+   tasks: 
+    -
+     name: remove zabbix agent from clients
+     yum:  
+      name: zabbix-agent
+      state: absent 
+    - 
+     name: unmout localrepo from clients
+     shell: "umount /localrepo"
+     ignore_errors: yes
+    - 
+     name: remove /localrepo
+     shell:  "rm -rf /localrepo "
+     ignore_errors: yes
+    -
+     name: restart rpcbind service 
+     shell: "systemctl restart rpcbind"
+    - 
+     include: tasks/originalrepo.yml
+    
+
+-
+ 
+   name: master
+   hosts: localhost
+   tasks: 
+    - 
+     name: remove zabbix packeges
+     yum:  
+      name: '{{item}}'
+      state: absent
+      autoremove: yes
+     loop: '{{pack_zabbix}}'
+    - 
+     name: remove php pack
+     yum: 
+      name: '{{item}}'
+      state: absent
+     loop: '{{php_pack}}'
+    -
+     name: remove zabbix database 
+     mysql_db:
+      name: fosslinuxzabbix
+      state: absent
+     
+    - 
+     name: install httpd and mariadb 
+     yum: 
+       name: '{{item}}'
+       state: absent
+       autoremove: yes
+     loop: '{{web_pack_install}}'
+    
+    -
+     shell: " rm -rf /usr/share/doc/zabbix-server-mysql-4.0.20 " 
+    -
+     shell: " rpm -e zabbix-release-4.0-1.el7.noarch remi-release-7.7-2.el7.remi.noarch"
+    -
+     shell: ' echo "" > /etc/exports' 
+    - 
+     include: tasks/originalrepo.yml
+    
+    
+
+     

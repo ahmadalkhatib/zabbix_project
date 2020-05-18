@@ -1,0 +1,17 @@
+- 
+  name: master
+  hosts: localhost
+  roles:
+   - webtask
+   - db_task
+   - zabbixconf
+   - restart_enable
+- 
+ name: client 
+ hosts: ansible_clients
+ roles: 
+  - clientlocalrepo
+  - clientagent
+
+  
+       

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#rpm -ihv /localrepo/epel-release-latest-7.noarch.rpm
+
+rpm -ihv /localrepo/remi-release-7.rpm
+
+yum-config-manager --disable remi-php54
+
+yum-config-manager --disable remi-php54
+
+
+# there is depednces
+
+rpm -ihv /localrepo/zabbix-release-4.0-1.el7.noarch.rpm
+#rpm -ihv /localrepo/*lib* >/dev/null
+#rpm -ihv /localrepo/libevent-2.0.21-4.el7.x86_64.rpm
+# rpm -ihv /localrepo/libiksemel-1.4-alt5.x86_64.rpm
+#rpm -ihv /localrepo/libunixODBC2-2.3.7-alt1.x86_64.rpm
+# rpm -ihv /localrepo/OpenIPMI-libs-2.0.27-1.el7.x86_64.rpm 
